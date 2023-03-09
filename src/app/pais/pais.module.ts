@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PorCapitalComponent } from './pages/por-capital/por-capital.component';
 import { PorPaisComponent } from './pages/por-pais/por-pais.component';
 import { VerPaisComponent } from './pages/ver-pais/ver-pais.component';
-import { VerRegionComponent } from './pages/ver-region/ver-region.component';
+import { PorRegionComponent } from './pages/por-region/por-region.component';
 
 
 
@@ -12,13 +12,14 @@ import { VerRegionComponent } from './pages/ver-region/ver-region.component';
     PorCapitalComponent,
     PorPaisComponent,
     VerPaisComponent,
-    VerRegionComponent
+    PorRegionComponent,
+    PorRegionComponent
   ],
   exports: [
     PorCapitalComponent,
     PorPaisComponent,
     VerPaisComponent,
-    VerRegionComponent
+    PorRegionComponent
   ],
   imports: [
     CommonModule
