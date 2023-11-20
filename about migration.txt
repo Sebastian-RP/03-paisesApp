@@ -1,0 +1,51 @@
+Enviar los cambios desde un repositorio remoto antiguo a otro repositorio nuevo que es un clon del anterior
+
+Repo viejo
+https://github.com/Sebastian-RP/03-paisesApp
+
+
+en el repositorio viejo puse el siguiente comando 
+- git remote add <nombre> https://github.com/Sebastian-RP/03-paisesApp-newrepo.git
+
+git remote add 03-paisesApp-newrepo https://github.com/Sebastian-RP/03-paisesApp-newrepo.git
+-	Previamente hacer un pull de los cambios de dicha rama para estar seguros
+git pull 03-paisesApp-newrepo migracion  (siendo migración la rama de donde se traerá, a su vez que debo estar en dicha rama)
+
+- git push 03-paisesApp-newrepo migracion (funciono push al nombre remoto que le dimos y rama<main>)
+para que haga el push a ambas ramas debo ejecutar 2 push, uno al repo nuevo y otro push al antiguo
+Ver y eliminar las conexiones remotas 
+git remote -v
+git remote rm <nombre_conexion>
+
+permite hacer pull desde el repo viejo sin necesidad de comparar el historial de commits
+git pull https://github.com/Sebastian-RP/03-paisesApp-newrepo main --allow-unrelated-histories
+
+
+revisar sobre la manera correctar de crear el repo o de entregar los cambios
+
+el web hook debería ejecutarse después del push en la rama migración en el repo viejo
+
+Pasos para llevar el historial de los cambios del viejo repo al nuevo
+
+1.	Crea un nuevo repositorio en GitHub. Puedes hacerlo desde la interfaz de usuario web o mediante la línea de comandos. Si necesitas ayuda para crear un repositorio, consulta la documentación oficial de GitHub 12.
+2.	Clona el nuevo repositorio en tu máquina local. Puedes hacerlo mediante la línea de comandos con el comando git clone seguido de la URL del nuevo repositorio.
+3.	Agrega el antiguo repositorio como un remote del nuevo repositorio con el comando git remote add old_repo <URL del antiguo repositorio>.
+4.	Realiza un fetch de los cambios del antiguo repositorio con el comando git fetch old_repo.
+5.	Realiza un merge de los cambios del antiguo repositorio con el comando git merge old_repo/new_branch.
+6.	Realiza un push de los cambios al nuevo repositorio con el comando git push.
+++++++++++++++
+-	git remote add 03-paisesApp-oldrepo https://github.com/Sebastian-RP/03-paisesApp.git
+-	git fetch 03-paisesApp-oldrepo
+-	git merge old_repo/new_branch (esa new_branch será de que rama del antiguo repo traerá los cambios)
+use el comando “git merge 03-paisesApp-oldrepo/migracion” pero me da el siguiente mensaje de error “fatal: refusing to merge unrelated histories”
+
+se soluciono con el comando “git merge 03-paisesApp-oldrepo/migracion --allow-unrelated-histories”
+
+-	finalmente se agregan los cambios y se hace el push
+
+++++++++++++++++++++++++++++++
+
+Conectar ambos repos
+Primero debo configurar el repo nuevo y que tenga todos los cambios y estén iguales incluyendo su rama migración – con la de migración del repo viejo
+
+Luego en el repo nuevo y en la rama migración llevo esos cambios a la rama principal (develop en V3) y hago el push de dichos cambios para que estén iguales. Esto para evitar los conflictos de merge
